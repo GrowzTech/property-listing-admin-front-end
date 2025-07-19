@@ -2,34 +2,14 @@
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
-import { Checkbox } from "@/components/ui/checkbox";
-import { Label } from "@/components/ui/label";
 import Image from "next/image";
 import img from "../../../../../public/propertyLog.svg";
-import { Mail } from "lucide-react";
 
 const Page = () => {
   const [data, setData] = useState({
     email: "",
+    password: "",
   });
-
-  const [error, setError] = useState({
-    email: "",
-  });
-
-  const validate = () => {
-    let valid = true;
-    const newError = { email: "" };
-    if (!data.email) {
-      newError.email = "Email is required";
-      valid = false;
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) {
-      newError.email = "Invalid email format";
-      valid = false;
-    }
-    setError(newError);
-    return valid;
-  };
 
   const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -38,7 +18,6 @@ const Page = () => {
 
   const handleOnSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!validate()) return;
     // Handle login logic here
   };
 
@@ -50,41 +29,41 @@ const Page = () => {
         </div>
         <div className="flex flex-col  items-center justify-center gap-[6px] ">
           <span className="text-[48px] text-black font-semibold text-center leading-none">
-            Forget Password
+            Set new password
           </span>
           <span className="font-open-sans max-w-[340px] text-center font-normal text-[14px] text-[#474950]">
-            You can request a password reset token . It will be sent to an
-            e-mail address
+            Enter your new password below to secure your account
           </span>
         </div>
         <form
           onSubmit={handleOnSubmit}
           className="w-full flex flex-col items-center justify-center gap-4"
         >
-          <div className="w-[100%]">
-            <div className="w-[100%] relative flex items-center">
-              <Input
-                className="p-6 pl-10 placeholder-[#474950] placeholder:text-sm text-black bg-[#F3F5FF]"
-                type="email"
-                name="email"
-                id="email"
-                value={data?.email}
-                onChange={handleOnChange}
-                placeholder="Enter your email"
-              />
-              <div className="absolute z-50 left-3">
-                <Mail color="#64666D" size={17} fillRule="evenodd" />
-              </div>
-            </div>
-            {error.email && (
-              <p className="text-red-500 text-xs mt-1">{error.email}</p>
-            )}
+          <div className=" w-[100%]">
+            <Input
+              className="p-6 placeholder-[#474950] placeholder:text-sm text-black bg-[#F3F5FF"
+              type="password"
+              id="password"
+              onChange={handleOnChange}
+              placeholder="New password"
+              required
+            />
+          </div>
+          <div className=" w-[100%]">
+            <Input
+              className="p-6 placeholder-[#474950] placeholder:text-sm text-black bg-[#F3F5FF"
+              type="password"
+              id="password"
+              onChange={handleOnChange}
+              placeholder="Confirm password"
+              required
+            />
           </div>
           <Button
             type="submit"
             className="w-full bg-[#1C7ED6] p-6 rounded-2xl hover:bg-[#1c7fd6f6] text-white"
           >
-            Request Reset
+            Finish
           </Button>
         </form>
         <div className="w-full flex flex-col items-center justify-center gap-4">

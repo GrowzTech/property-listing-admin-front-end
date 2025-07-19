@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @import "tw-animate-css";
+@import url('https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,200..900;1,7..72,200..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
 
 @custom-variant dark (&:is(.dark *));
 
@@ -43,8 +44,11 @@
   --radius-xl: calc(var(--radius) + 4px);
 }
 
+html, body {
+  font-family: 'Open Sans', sans-serif;
+}
 body {
-  background: var(--foreground);
+  background:#F9FAFB;
   color: var(--background);
 }
 

@@ -1,0 +1,112 @@
+import DropDown from "@/components/block/DropDown";
+import TextInput from "@/components/block/FormInput";
+import { SliderInput } from "@/components/block/Slider";
+import { Button } from "@/components/ui/button";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Label } from "@/components/ui/label";
+import { ArrowUp, X } from "lucide-react";
+import React, { useState } from "react";
+
+const options = [
+  { label: "Profile", value: "profile" },
+  { label: "Billing", value: "billing" },
+  { label: "Team", value: "team" },
+  { label: "Subscription", value: "subscription" },
+];
+
+const Filters = () => {
+  const [progress, setProgress] = useState([30]);
+  return (
+    <div className="flex w-full flex-col gap-4 p-6 pb-16 bg-[#F9FAFB] border border-[#E2E8F0] rounded-md">
+      <div className="flex items-center justify-between w-full">
+        <span className="font-bold text-[16px] text-[#333C4C]">
+          Advanced Filter
+        </span>
+        <div className="flex items-center gap-2">
+          <Button
+            type="button"
+            className=" border p-6 py-3 bg-white hover:bg-white rounded-md text-black flex justify-center items-center gap-1"
+          >
+            <X size={8} color="black" />
+            Clear All
+          </Button>
+          <div className="flex items-center justify-center p-2 bg-white border rounded-sm">
+            <X size={18} color="black" />
+          </div>
+        </div>
+      </div>
+      <div className="w-full mt-3 flex flex-col justify-center gap-6">
+        <div className="flex items-end justify-center gap-4  w-full">
+          <TextInput
+            label="Search"
+            className="flex-1"
+            placeholder="Search properties..."
+            type="text"
+          />
+          <DropDown
+            options={options}
+            placeholder="Select Status"
+            onSelect={(option) => console.log(option)}
+            label="Status"
+            isRequired={false}
+          />
+          <DropDown
+            options={options}
+            placeholder="Select Type"
+            onSelect={(option) => console.log(option)}
+            label="Bedrooms"
+            isRequired={false}
+          />
+          <DropDown
+            options={options}
+            placeholder="Date Listed"
+            onSelect={(option) => console.log(option)}
+            label="Sorted By"
+            isRequired={false}
+          />
+
+          <div className="flex items-center justify-center p-2 bg-white border rounded-sm">
+            <ArrowUp size={18} color="#94A3B8" />
+          </div>
+        </div>
+        <div className="flex items-center gap-4 w-full">
+          <div className="w-1/3">
+            <SliderInput
+              label={`Price: $0 - $100`}
+              value={progress}
+              onChange={setProgress}
+              min={0}
+              max={100}
+              step={5}
+              color="red"
+              className="bg-amber-100 text-[red]   [&>div]:bg-blue-500"
+            />
+          </div>
+          <div className="w-1/3">
+            <SliderInput
+              label={`Price: $0 - $100`}
+              value={progress}
+              onChange={setProgress}
+              min={0}
+              max={100}
+              step={5}
+              color="red"
+              className="bg-amber-100 text-[red]   [&>div]:bg-blue-500"
+            />
+          </div>
+          <div className="flex gap-3 items-center">
+            <Checkbox className="border-black" id={`terms`} />
+            <Label
+              htmlFor={`terms`}
+              className="text-[#333C4C] font-medium text-[14px]"
+            >
+              Featured Properties Only
+            </Label>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Filters;
