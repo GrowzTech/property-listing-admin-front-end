@@ -39,7 +39,7 @@ export const Modal: React.FC<CustomDialogProps> = ({
           <div className="flex items-center gap-2">
             {titleIcon}
             <p className="font-semibold text-[20px] text-[#0A0A0A]">{title}</p>
-            <Badge label={status} color="bg-green-500" />
+            {status && <Badge label={status} color="bg-green-500" />}
           </div>
         </div>
         <DialogHeader>
