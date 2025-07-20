@@ -40,7 +40,7 @@ const Page = () => {
           setToggleFilters={setToggleFilters}
           toggleFilters={toggleFilters}
         >
-          {toggleFilters && <Filters />}
+          {toggleFilters && <Filters setToggleFilters={setToggleFilters} />}
 
           <div>
             {displayMode === "gridView" ? (
