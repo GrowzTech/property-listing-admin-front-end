@@ -16,6 +16,8 @@ const options = [
 
 const Filters = () => {
   const [progress, setProgress] = useState([30]);
+  const [AcreageProgress, setAcreageProgress] = useState([80]);
+
   return (
     <div className="flex w-full flex-col gap-4 p-6 pb-16 bg-[#F9FAFB] border border-[#E2E8F0] rounded-md">
       <div className="flex items-center justify-between w-full">
@@ -72,7 +74,7 @@ const Filters = () => {
         <div className="flex items-center gap-4 w-full">
           <div className="w-1/3">
             <SliderInput
-              label={`Price: $0 - $100`}
+              label={`Price: $0 - $${progress}`}
               value={progress}
               onChange={setProgress}
               min={0}
@@ -84,9 +86,9 @@ const Filters = () => {
           </div>
           <div className="w-1/3">
             <SliderInput
-              label={`Price: $0 - $100`}
-              value={progress}
-              onChange={setProgress}
+              label={`Acreage : 0 - ${AcreageProgress} acres`}
+              value={AcreageProgress}
+              onChange={setAcreageProgress}
               min={0}
               max={100}
               step={5}
