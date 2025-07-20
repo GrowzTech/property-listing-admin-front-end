@@ -32,7 +32,9 @@ export const Modal: React.FC<CustomDialogProps> = ({
 }) => {
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className={`${width} text-black`}>
+      <DialogContent
+        className={`${width} text-black max-h-[90vh] overflow-y-scroll`}
+      >
         <div className="w-full flex items-center justify-between gap-4">
           <div className="flex items-center gap-2">
             {titleIcon}
