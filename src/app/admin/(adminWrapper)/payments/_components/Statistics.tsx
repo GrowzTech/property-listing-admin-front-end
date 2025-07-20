@@ -12,7 +12,6 @@ const Statistics = () => {
       color: "",
       Icon: DollarSignIcon,
       isDefault: true,
-      currency: "$",
     },
     {
       title: "Contact Payments",
@@ -39,7 +38,6 @@ const Statistics = () => {
       bgColor: "",
       color: "",
       Icon: DollarSignIcon,
-      currency: "$",
       isDefault: true,
     },
   ];
@@ -55,7 +53,6 @@ const Statistics = () => {
           value={item?.value}
           Icon={item?.Icon}
           description={item?.description}
-          currency={item?.currency || ""}
           isDefault={item?.isDefault}
         />
       ))}
