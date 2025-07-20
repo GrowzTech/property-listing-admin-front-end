@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Table,
   TableBody,
@@ -9,18 +9,26 @@ import {
 } from "@/components/ui/table";
 import Badge from "@/components/block/Badge";
 import {
+  BanknoteArrowDown,
   Calendar,
   CreditCard,
+  Download,
   Home,
   Mail,
   MapPin,
-  MessageSquare,
+  PhoneCall,
   Receipt,
   User,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Modal } from "@/components/block/Modal";
+import Link from "next/link";
+import CustomerInfo from "./CustomerInfo";
+import PaymentInfo from "./PaymentInfo";
+import PropertyInfo from "./PropertyInfo";
 
 const PaymentsTable = () => {
+  const [open, setOpen] = useState(false);
   return (
     <div>
       <div className="flex flex-col gap-6 w-full bg-[#white] border rounded-md">
@@ -31,7 +39,6 @@ const PaymentsTable = () => {
               <TableHead className="text-[#94A3B8]">Customer</TableHead>
               <TableHead className="text-[#94A3B8]">Payment Method</TableHead>
               <TableHead className="text-[#94A3B8]">Amount</TableHead>
-
               <TableHead className="text-[#94A3B8]">Status</TableHead>
               <TableHead className="text-[#94A3B8]">Date</TableHead>
               <TableHead className="text-[#94A3B8]">Actions</TableHead>
@@ -96,6 +103,7 @@ const PaymentsTable = () => {
                   <div className="flex items-center gap-2">
                     <Button
                       type="button"
+                      onClick={() => setOpen(true)}
                       className=" border p-6 py-3 bg-white hover:bg-white rounded-md text-black flex justify-center items-center gap-1"
                     >
                       <Receipt size={8} color="black" />
@@ -108,6 +116,31 @@ const PaymentsTable = () => {
           </TableBody>
         </Table>
       </div>
+      <Modal
+        open={open}
+        onOpenChange={setOpen}
+        title="Transaction Details"
+        description="This is a description."
+        width="min-w-[700px]"
+        subTitle="Property : Downtown Office Space"
+        status="Completed"
+        titleIcon={<BanknoteArrowDown size={20} color="#374151" />}
+      >
+        <div className="flex flex-col items-end gap-4 mt-3">
+          <CustomerInfo />
+          <PaymentInfo />
+          <PropertyInfo />
+          <div>
+            <Button
+              type="button"
+              className=" border p-6 py-3 bg-white hover:bg-white rounded-md text-black flex justify-center items-center gap-1"
+            >
+              <Download size={8} color="black" />
+              Download Invoice
+            </Button>
+          </div>
+        </div>
+      </Modal>
     </div>
   );
 };
