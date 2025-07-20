@@ -19,10 +19,10 @@ const Page = () => {
         <div className="flex gap-4 items-center">
           <div className="flex flex-col gap-6">
             <span className="font-bold text-[24px] leading-0 text-[#333C4C]">
-              Inquiries
+              Purchase Forms
             </span>
             <span className="font-medium text-[15px] text-[#6B7280] leading-0">
-              Manage customer inquiries and responses
+              Manage customer purchase forms
             </span>
           </div>
         </div>
@@ -31,10 +31,10 @@ const Page = () => {
           <div className="flex w-full justify-between items-center">
             <div className="flex flex-col gap-5">
               <span className="font-bold leading-0 text-[20px] text-[#0A0A0A]">
-                Customer Inquiries
+                Customer Purchase Forms
               </span>
               <span className="text-[12px] leading-0 text-[#94A3B8]">
-                View and respond to property inquiries
+                View and respond to property purchase forms
               </span>
             </div>
 
