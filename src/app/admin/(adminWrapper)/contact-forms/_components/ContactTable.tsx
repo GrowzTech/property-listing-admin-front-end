@@ -14,7 +14,9 @@ import {
   Calendar,
   MapPin,
   MessageSquare,
+  Eye,
 } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const MessagesTable = () => {
   return (
@@ -24,44 +26,50 @@ const MessagesTable = () => {
           <TableHeader className="bg-[#F9FAFB] rounded-md">
             <TableRow>
               <TableHead className="text-[#94A3B8]">
-                <div className="flex items-center gap-2">
+                <div className="flex items-center justify-center gap-2">
                   <p className="text-[#94A3B8]">No.</p>
                 </div>
               </TableHead>
               <TableHead className="text-[#94A3B8]">
-                <div className="flex items-center gap-2">
+                <div className="flex items-center justify-center gap-2">
                   <User size={16} color="#374151" />
                   Name
                 </div>
               </TableHead>
               <TableHead className="text-[#94A3B8]">
-                <div className="flex items-center gap-2">
+                <div className="flex items-center justify-center gap-2">
                   <Mail size={16} color="#374151" />
                   Email
                 </div>
               </TableHead>
               <TableHead className="text-[#94A3B8]">
-                <div className="flex items-center gap-2">
+                <div className="flex items-center justify-center gap-2">
                   <Phone size={16} color="#374151" />
                   Phone
                 </div>
               </TableHead>
               <TableHead className="text-[#94A3B8]">
-                <div className="flex items-center gap-2">
+                <div className="flex items-center justify-center gap-2">
                   <MapPin size={16} color="#374151" />
                   Location
                 </div>
               </TableHead>
               <TableHead className="text-[#94A3B8]">
-                <div className="flex items-center gap-2">
+                <div className="flex items-center justify-center gap-2">
                   <MessageSquare size={16} color="#374151" />
                   Messages
                 </div>
               </TableHead>
               <TableHead className="text-[#94A3B8]">
-                <div className="flex items-center gap-2">
+                <div className="flex items-center justify-center gap-2">
                   <Calendar size={16} color="#374151" />
                   Date
+                </div>
+              </TableHead>
+              <TableHead className="text-[#94A3B8]">
+                <div className="flex items-center justify-center gap-2">
+                  <Eye size={16} color="#374151" />
+                  View
                 </div>
               </TableHead>
             </TableRow>
@@ -70,29 +78,38 @@ const MessagesTable = () => {
             {Array.from({ length: 10 }).map((_, index) => (
               <TableRow key={index} className="text-[#333C4C]">
                 <TableCell>
-                  <p className="font-medium">{index + 1}</p>
+                  <p className="font-medium text-center">{index + 1}</p>
                 </TableCell>
                 <TableCell>
-                  <p className="font-medium ">Beshir dekebo</p>
+                  <p className="font-medium text-center">Beshir dekebo</p>
                 </TableCell>
                 <TableCell>
-                  <p className="font-medium">beshirdekebo@gmail.com</p>
+                  <p className="font-medium text-center">
+                    beshirdekebo@gmail.com
+                  </p>
                 </TableCell>
                 <TableCell>
-                  <p className="font-medium">+251911111111</p>
+                  <p className="font-medium text-center">+251911111111</p>
                 </TableCell>
 
                 <TableCell>
-                  <p className="font-medium">Addis Ababa, Ethiopia</p>
+                  <p className="font-medium text-center">
+                    Addis Ababa, Ethiopia
+                  </p>
                 </TableCell>
                 <TableCell>
-                  <p className="font-medium max-w-[200px] truncate ">
+                  <p className="font-medium text-center max-w-[300px] truncate ">
                     Hello, I am interested in this property. When would be a
                     good time to schedule a visit?
                   </p>
                 </TableCell>
                 <TableCell>
-                  <p className="font-medium">2025-07-20</p>
+                  <p className="font-medium text-center">2025-07-20</p>
+                </TableCell>
+                <TableCell>
+                  <Button className="bg-[#333C4C] text-white rounded-md text-center w-full">
+                    <Eye size={16} color="white" />
+                  </Button>
                 </TableCell>
               </TableRow>
             ))}
