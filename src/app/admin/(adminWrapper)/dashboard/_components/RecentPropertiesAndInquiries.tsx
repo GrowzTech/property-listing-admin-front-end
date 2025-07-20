@@ -5,19 +5,19 @@ import React from "react";
 const RecentPropertiesAndInquiries = () => {
   const rows = [
     {
-      photo: "/images/alice.png",
+      photo: "/land-2.jpg",
       title: "Admin",
       price: "$500,000",
       status: "Active",
     },
     {
-      photo: "/images/bob.png",
+      photo: "/land-2.jpg",
       title: "Manager",
       price: "$400,000",
       status: "Inactive",
     },
     {
-      photo: "/images/bob.png",
+      photo: "/land-2.jpg",
       title: "Manager",
       price: "$400,000",
       status: "Inactive",

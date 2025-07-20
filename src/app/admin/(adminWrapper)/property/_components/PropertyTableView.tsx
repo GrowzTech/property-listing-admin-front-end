@@ -31,7 +31,7 @@ const PropertyTableView = () => {
             <TableRow key={index}>
               <TableCell className="text-[#2E2E2E]">
                 <Image
-                  src={"/placeholder.jpg"}
+                  src={"/land-2.jpg"}
                   alt="photo"
                   width={35}
                   height={35}

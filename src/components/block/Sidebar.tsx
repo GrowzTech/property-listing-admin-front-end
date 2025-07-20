@@ -75,7 +75,7 @@ const footerItems = [
 export function AppSidebar() {
   const pathname = usePathname();
   return (
-    <Sidebar className="'bg-white">
+    <Sidebar className="'bg-white font-inter">
       <SidebarContent>
         <SidebarGroup>
           <SidebarGroupLabel className="py-6 border-b border-gray-200 flex items-center justify-center">
@@ -126,7 +126,7 @@ export function AppSidebar() {
         {/* <SidebarMenuItem className="w-full"> */}
         <div className="flex items-center gap-2">
           <Image
-            src={"logoProperty.svg"}
+            src={"/user-1.jpg"}
             alt="Logo"
             width={35}
             height={35}

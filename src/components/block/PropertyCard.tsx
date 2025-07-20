@@ -36,17 +36,11 @@ const PropertyCard = ({
       <div className="flex-1 h-[255px]">
         <div className="w-full h-full rounded-md">
           <Image
-            src={image || "/placeholder.jpg"}
+            src={image || "/land-2.jpg"}
             alt="Property image"
             width={100}
             height={100}
-            style={{
-              objectFit: "fill",
-              height: "100%",
-              width: "100%",
-              background: "gray",
-              borderRadius: "10px",
-            }}
+            className="w-full h-full object-cover object-center bg-gray-200 rounded-md"
           />
         </div>
       </div>
