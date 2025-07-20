@@ -1,5 +1,5 @@
 import StatisticsCard from "@/components/block/StatisticsCard";
-import { Building2, CreditCard, MessageSquare, TrendingUp } from "lucide-react";
+import { Building2, MessageSquare, TrendingUp } from "lucide-react";
 import React from "react";
 
 const Statistics = () => {
@@ -24,14 +24,6 @@ const Statistics = () => {
       bgColor: "bg-[#EEFEF3]",
       color: "bg-[#1EBB58]",
       Icon: MessageSquare,
-    },
-    {
-      title: "Recent Payments",
-      value: 9,
-      description: "This month",
-      bgColor: "bg-[#F9F3FF]",
-      color: "bg-[#A048F2]",
-      Icon: CreditCard,
     },
     {
       title: "Total Properties",
