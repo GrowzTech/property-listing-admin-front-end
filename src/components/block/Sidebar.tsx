@@ -53,6 +53,12 @@ const items = [
     icon: ShoppingBag,
   },
   {
+    title: "Contact Forms",
+    subtitle: "Inquiries",
+    url: "/admin/contact-forms",
+    icon: MessageSquare,
+  },
+  {
     title: "Transactions",
     subtitle: "Payments & Invoices",
     url: "/admin/payments",
