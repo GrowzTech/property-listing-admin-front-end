@@ -16,7 +16,7 @@ const Page = () => {
         <div className="flex justify-between items-center">
           <div className="flex flex-col gap-6">
             <span className="font-bold text-[24px] leading-0 text-[#333C4C]">
-              Welcome back , Henok
+              Welcome back , Beshir
             </span>
             <span className="font-medium text-[15px] text-[#6B7280] leading-0">
               Here&apos;s what&apos;s happening with your properties today

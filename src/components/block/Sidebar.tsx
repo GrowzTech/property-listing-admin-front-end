@@ -142,7 +142,7 @@ export function AppSidebar() {
 
           <div className="flex flex-col justify-center gap-4">
             <span className="text-[14px] text-[#374151] font-medium leading-0">
-              Henok Zeru
+              Beshir Zeru
             </span>
             <span className="text-[10px] text-[#6B7280] leading-0">
               henogato9876@gmail.com

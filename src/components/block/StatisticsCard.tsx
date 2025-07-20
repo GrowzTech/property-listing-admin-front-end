@@ -7,8 +7,8 @@ const StatisticsCard = ({
   value,
   Icon,
   description,
-  currency = "",
   isDefault = false,
+  statusDetails,
 }: {
   bgColor: string;
   color: string;
@@ -16,8 +16,12 @@ const StatisticsCard = ({
   value: string | number;
   Icon: React.ElementType;
   description: string;
-  currency?: string;
   isDefault?: boolean;
+  statusDetails?: {
+    available: number;
+    pending: number;
+    sold: number;
+  };
 }) => {
   return (
     <div
@@ -33,10 +37,8 @@ const StatisticsCard = ({
           <Icon color={isDefault ? "black " : "#fff"} size={16} />
         </div>
       </div>
-      <span className="font-bold text-[24px]">
-        {currency}
-        {value}
-      </span>
+      <span className="font-bold text-[24px]">{value}</span>
+      {/* If the status details is provided show it instead of the description */}
       <span className="text-[#94A3B8] text-[12px]">{description}</span>
       <div className="absolute font-normal bottom-1 right-1 z-50">
         {!isDefault && <Icon color={"#e5eaf0"} size={60} />}

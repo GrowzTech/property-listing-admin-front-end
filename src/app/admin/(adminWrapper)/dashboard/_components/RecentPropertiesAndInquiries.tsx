@@ -33,17 +33,17 @@ const RecentPropertiesAndInquiries = () => {
 
   const row2 = [
     {
-      name: "Henok Assefa",
+      name: "Beshir Assefa",
       message: "I'm interested in viewing...",
       status: "Active",
     },
     {
-      name: "Henok Assefa",
+      name: "Beshir Assefa",
       message: "I'm interested in viewing...",
       status: "Inactive",
     },
     {
-      name: "Henok Assefa",
+      name: "Beshir Assefa",
       message: "I'm interested in viewing...",
       status: "Inactive",
     },

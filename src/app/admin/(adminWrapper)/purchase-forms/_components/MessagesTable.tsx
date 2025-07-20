@@ -56,7 +56,7 @@ const MessagesTable = () => {
                     <User size={20} color="#374151" />
                     <div>
                       <p className="text-[12px] font-medium text-[#333C4C">
-                        Henok Assefa
+                        Beshir Assefa
                       </p>
                       <span className="flex items-center gap-1 text-[#6B7280] text-[10px]">
                         <Mail size={16} color="#6B7280" />

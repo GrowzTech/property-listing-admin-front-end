@@ -6,11 +6,16 @@ const Statistics = () => {
   const statisticsData = [
     {
       title: "Total Properties",
-      value: 200,
+      value: 300,
       description: "Active listings",
       bgColor: "bg-[#EFF6FF]",
       color: "bg-[#2767EC]",
       Icon: Building2,
+      statusDetails: {
+        available: 100,
+        pending: 100,
+        sold: 100,
+      },
     },
     {
       title: "Pending Inquiries",
@@ -30,12 +35,11 @@ const Statistics = () => {
     },
     {
       title: "Total Properties",
-      value: 200,
+      value: "$200",
       description: "Total Revenue",
       bgColor: "bg-[#FFF6EA]",
       color: "bg-[#F56C13]",
       Icon: TrendingUp,
-      currency: "$",
     },
   ];
 
@@ -50,7 +54,7 @@ const Statistics = () => {
           value={item?.value}
           Icon={item?.Icon}
           description={item?.description}
-          currency={item?.currency || ""}
+          statusDetails={item?.statusDetails}
         />
       ))}
     </div>
