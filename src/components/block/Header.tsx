@@ -8,7 +8,7 @@ import { Input } from "../ui/input";
 function generateBreadcrumb(pathname: string) {
   const paths = pathname.split("/").filter(Boolean);
   return paths.map((segment, index) => {
-    const href = "/" + paths.slice(0, index + 1).join("/");
+    const href = "/admin/dashboard";
     return {
       label: segment.charAt(0).toUpperCase() + segment.slice(1),
       href,
@@ -19,14 +19,14 @@ function generateBreadcrumb(pathname: string) {
 const Header = () => {
   const pathname = usePathname();
   const breadcrumbs = generateBreadcrumb(pathname);
-  console.log("Current Pathname:", pathname);
+
   return (
     <div className="flex flex-row bg-white w-full items-center justify-between p-3 pl-10 text-black border-b border-[#E2E8F0]">
       <div className="bg-white">
         {breadcrumbs.length > 0 && (
           <div className="flex items-center gap-1">
             {breadcrumbs.map((crumb, idx) => (
-              <div key={crumb.href} className="flex items-center gap-1">
+              <div key={idx} className="flex items-center gap-1">
                 {idx < breadcrumbs.length - 1 ? (
                   <Link
                     href={crumb.href}
