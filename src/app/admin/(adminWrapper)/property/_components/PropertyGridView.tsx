@@ -40,13 +40,13 @@ export const PropertyGridView = () => {
           listedDate={property.listedDate}
           status={property.status}
           handleView={function (): void {
-            throw new Error("Function not implemented.");
+            console.log("Button clicked");
           }}
           handleEdit={function (): void {
-            throw new Error("Function not implemented.");
+            console.log("Button clicked");
           }}
           handleDelete={function (): void {
-            throw new Error("Function not implemented.");
+            console.log("Button clicked");
           }}
         />
       ))}
