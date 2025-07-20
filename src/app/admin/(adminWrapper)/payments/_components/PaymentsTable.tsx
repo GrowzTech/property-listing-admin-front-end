@@ -16,13 +16,11 @@ import {
   Home,
   Mail,
   MapPin,
-  PhoneCall,
   Receipt,
   User,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Modal } from "@/components/block/Modal";
-import Link from "next/link";
 import CustomerInfo from "./CustomerInfo";
 import PaymentInfo from "./PaymentInfo";
 import PropertyInfo from "./PropertyInfo";

@@ -32,12 +32,14 @@ export const Modal: React.FC<CustomDialogProps> = ({
 }) => {
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className={`${width} text-black`}>
+      <DialogContent
+        className={`${width} text-black max-h-[90vh] overflow-y-scroll`}
+      >
         <div className="w-full flex items-center justify-between gap-4">
           <div className="flex items-center gap-2">
             {titleIcon}
             <p className="font-semibold text-[20px] text-[#0A0A0A]">{title}</p>
-            <Badge label={status} color="bg-green-500" />
+            {status && <Badge label={status} color="bg-green-500" />}
           </div>
         </div>
         <DialogHeader>

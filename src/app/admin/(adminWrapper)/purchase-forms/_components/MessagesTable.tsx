@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Table,
   TableBody,
@@ -17,8 +17,12 @@ import {
   User,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Modal } from "@/components/block/Modal";
+import CustomerInfo from "./CustomerInfo";
+import CustomerMessage from "./CustomerMessage";
 
 const MessagesTable = () => {
+  const [open, setOpen] = useState(false);
   return (
     <div>
       <div className="flex flex-col gap-6 w-full bg-[#white] border rounded-md">
@@ -83,6 +87,7 @@ const MessagesTable = () => {
                 <TableCell className="text-[#2E2E2E]">
                   <div className="flex items-center gap-2">
                     <Button
+                      onClick={() => setOpen(true)}
                       type="button"
                       className=" border p-6 py-3 bg-white hover:bg-white rounded-md text-black flex justify-center items-center gap-1"
                     >
@@ -96,6 +101,20 @@ const MessagesTable = () => {
           </TableBody>
         </Table>
       </div>
+      <Modal
+        open={open}
+        onOpenChange={setOpen}
+        title="Inquiry Details"
+        width="min-w-[700px]"
+        subTitle="Property : Downtown Office Space"
+        status="Responded"
+        titleIcon={<MessageSquare size={20} color="#374151" />}
+      >
+        <div className="flex flex-col items-end gap-4 mt-3">
+          <CustomerInfo />
+          <CustomerMessage />
+        </div>
+      </Modal>
     </div>
   );
 };
