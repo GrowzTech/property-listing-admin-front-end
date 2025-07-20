@@ -5,10 +5,9 @@ import React from "react";
 import MessagesTable from "./_components/MessagesTable";
 
 const options = [
-  { label: "Profile", value: "profile" },
-  { label: "Billing", value: "billing" },
-  { label: "Team", value: "team" },
-  { label: "Subscription", value: "subscription" },
+  { label: "Available", value: "available" },
+  { label: "Pending", value: "pending" },
+  { label: "Sold", value: "sold" },
 ];
 
 const Page = () => {
@@ -41,7 +40,7 @@ const Page = () => {
             <div className="w-[120px]">
               <DropDown
                 options={options}
-                placeholder="Date Listed"
+                placeholder="All Status"
                 onSelect={(option) => console.log(option)}
                 isRequired={false}
               />

@@ -40,6 +40,9 @@ const PropertyCard = ({
             alt="Property image"
             width={100}
             height={100}
+            // Next.js Image component optimizes images automatically
+            quality={100}
+            unoptimized={true}
             className="w-full h-full object-cover object-center bg-gray-200 rounded-md"
           />
         </div>

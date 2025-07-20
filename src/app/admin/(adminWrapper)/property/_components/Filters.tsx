@@ -4,18 +4,30 @@ import { SliderInput } from "@/components/block/Slider";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
-import { ArrowUp, X } from "lucide-react";
+import { X } from "lucide-react";
 import React, { useState } from "react";
 
 const options = [
-  { label: "Profile", value: "profile" },
-  { label: "Billing", value: "billing" },
-  { label: "Team", value: "team" },
-  { label: "Subscription", value: "subscription" },
+  { label: "Available", value: "available" },
+  { label: "Pending", value: "pending" },
+  { label: "Sold", value: "sold" },
 ];
 
-const Filters = () => {
+const sortOptions = [
+  { label: "Price (High to Low)", value: "price_desc" },
+  { label: "Price (Low to High)", value: "price_asc" },
+  { label: "Acreage (High to Low)", value: "acreage_desc" },
+  { label: "Acreage (Low to High)", value: "acreage_asc" },
+];
+
+const Filters = ({
+  setToggleFilters,
+}: {
+  setToggleFilters: React.Dispatch<React.SetStateAction<boolean>>;
+}) => {
   const [progress, setProgress] = useState([30]);
+  const [AcreageProgress, setAcreageProgress] = useState([80]);
+
   return (
     <div className="flex w-full flex-col gap-4 p-6 pb-16 bg-[#F9FAFB] border border-[#E2E8F0] rounded-md">
       <div className="flex items-center justify-between w-full">
@@ -28,10 +40,16 @@ const Filters = () => {
             className=" border p-6 py-3 bg-white hover:bg-white rounded-md text-black flex justify-center items-center gap-1"
           >
             <X size={8} color="black" />
-            Clear All
+            Reset
           </Button>
           <div className="flex items-center justify-center p-2 bg-white border rounded-sm">
-            <X size={18} color="black" />
+            <X
+              onClick={() => {
+                setToggleFilters(false);
+              }}
+              size={18}
+              color="black"
+            />
           </div>
         </div>
       </div>
@@ -50,29 +68,19 @@ const Filters = () => {
             label="Status"
             isRequired={false}
           />
+
           <DropDown
-            options={options}
-            placeholder="Select Type"
-            onSelect={(option) => console.log(option)}
-            label="Bedrooms"
-            isRequired={false}
-          />
-          <DropDown
-            options={options}
-            placeholder="Date Listed"
+            options={sortOptions}
+            placeholder="Select Sort Option"
             onSelect={(option) => console.log(option)}
             label="Sorted By"
             isRequired={false}
           />
-
-          <div className="flex items-center justify-center p-2 bg-white border rounded-sm">
-            <ArrowUp size={18} color="#94A3B8" />
-          </div>
         </div>
         <div className="flex items-center gap-4 w-full">
           <div className="w-1/3">
             <SliderInput
-              label={`Price: $0 - $100`}
+              label={`Price: $0 - $${progress}`}
               value={progress}
               onChange={setProgress}
               min={0}
@@ -84,9 +92,9 @@ const Filters = () => {
           </div>
           <div className="w-1/3">
             <SliderInput
-              label={`Price: $0 - $100`}
-              value={progress}
-              onChange={setProgress}
+              label={`Acreage : 0 - ${AcreageProgress} acres`}
+              value={AcreageProgress}
+              onChange={setAcreageProgress}
               min={0}
               max={100}
               step={5}
