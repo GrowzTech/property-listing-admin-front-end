@@ -6,6 +6,7 @@ import {
   MessageSquare,
   CreditCard,
   LogOut,
+  ShoppingBag,
 } from "lucide-react";
 import img from "../../../public/logoProperty.svg";
 import { usePathname } from "next/navigation";
@@ -46,10 +47,10 @@ const items = [
     icon: Plus,
   },
   {
-    title: "Inquiries",
-    subtitle: "Customer Messages",
-    url: "/admin/message",
-    icon: MessageSquare,
+    title: "Purchase Forms",
+    subtitle: "Purchase Forms",
+    url: "/admin/purchase-forms",
+    icon: ShoppingBag,
   },
   {
     title: "Transactions",
