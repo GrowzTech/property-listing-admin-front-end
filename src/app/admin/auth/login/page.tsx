@@ -1,7 +1,9 @@
 "use client";
+import { useEffect, useState } from "react";
+import { redirect } from "next/navigation";
+
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { useEffect, useState } from "react";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
 import Image from "next/image";
@@ -14,6 +16,9 @@ import { Spinner } from "@/components/block/Spinner";
 import Link from "next/link";
 
 const Page = () => {
+  // For now redirect to dashboard
+  redirect("/admin/dashboard");
+
   const dispatch = useAppDispatch();
   const [showPassword, setShowPassword] = useState(false);
   const [rememberMe, setRememberMe] = useState(true);
