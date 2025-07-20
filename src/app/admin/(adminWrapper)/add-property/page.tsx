@@ -1,13 +1,13 @@
 "use client";
 import Header from "@/components/block/Header";
 import React from "react";
-import BasicInfo from "./BasicInfo";
+import BasicInfo from "./_components/BasicInfo";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
-import PropertyDimensions from "./PropertyDimensions";
-import PropertySpecs from "./PropertySpecs";
-import PropertyImage from "./PropertyImage";
-import FeaturesAndAmenities from "./FeaturesAndAmenities";
+import PropertyDimensions from "./_components/PropertyDimensions";
+import PropertySpecs from "./_components/PropertySpecs";
+import PropertyImage from "./_components/PropertyImage";
+import FeaturesAndAmenities from "./_components/FeaturesAndAmenities";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";

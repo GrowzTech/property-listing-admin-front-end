@@ -1,12 +1,12 @@
 "use client";
 import Header from "@/components/block/Header";
 import React from "react";
-import Statistics from "./Statistics";
+import Statistics from "./_components/Statistics";
 import { Plus } from "lucide-react";
 import Link from "next/link";
-import Info from "./Info";
-import RecentPropertiesAndInquiries from "./RecentPropertiesAndInquiries";
-import Transaction from "./Transaction";
+import Info from "./_components/Info";
+import RecentPropertiesAndInquiries from "./_components/RecentPropertiesAndInquiries";
+import Transaction from "./_components/Transaction";
 
 const Page = () => {
   return (

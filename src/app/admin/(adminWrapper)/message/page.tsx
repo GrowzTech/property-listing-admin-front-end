@@ -2,7 +2,7 @@
 import Header from "@/components/block/Header";
 import DropDown from "@/components/block/DropDown";
 import React from "react";
-import MessagesTable from "./MessagesTable";
+import MessagesTable from "./_components/MessagesTable";
 
 const options = [
   { label: "Profile", value: "profile" },

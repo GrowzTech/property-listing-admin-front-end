@@ -4,9 +4,9 @@ import ListWrapper from "@/components/block/ListWrapper";
 import { Plus } from "lucide-react";
 import Link from "next/link";
 import React, { useState } from "react";
-import Filters from "./Filters";
-import { PropertyGridView } from "./PropertyGridView";
-import PropertyTableView from "./PropertyTableView";
+import Filters from "./_components/Filters";
+import { PropertyGridView } from "./_components/PropertyGridView";
+import PropertyTableView from "./_components/PropertyTableView";
 
 const Page = () => {
   const [displayMode, setDisplayMode] = useState("gridView");

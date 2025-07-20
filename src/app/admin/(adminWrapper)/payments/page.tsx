@@ -2,8 +2,8 @@
 import Header from "@/components/block/Header";
 import DropDown from "@/components/block/DropDown";
 import React from "react";
-import PaymentsTable from "./PaymentsTable";
-import Statistics from "./Statistics";
+import PaymentsTable from "./_components/PaymentsTable";
+import Statistics from "./_components/Statistics";
 
 const options = [
   { label: "Profile", value: "profile" },
