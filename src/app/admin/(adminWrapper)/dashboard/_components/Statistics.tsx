@@ -27,7 +27,7 @@ const Statistics = () => {
     },
     {
       title: "Total Reservation Deposits",
-      value: "$200",
+      value: "$22,455",
       description: "Reserved funds",
       bgColor: "bg-[#FFF6EA]",
       color: "bg-[#F56C13]",
