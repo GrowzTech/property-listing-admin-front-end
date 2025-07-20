@@ -17,8 +17,12 @@ import {
   Eye,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Modal } from "@/components/block/Modal";
+import CustomerInfo from "./CustomerInfo";
+import CustomerMessage from "./CustomerMessage";
 
 const MessagesTable = () => {
+  const [open, setOpen] = React.useState(false);
   return (
     <div>
       <div className="flex flex-col gap-6 w-full bg-[#white] border rounded-md">
@@ -107,7 +111,10 @@ const MessagesTable = () => {
                   <p className="font-medium text-center">2025-07-20</p>
                 </TableCell>
                 <TableCell>
-                  <Button className="bg-[#333C4C] text-white rounded-md text-center w-full">
+                  <Button
+                    onClick={() => setOpen(true)}
+                    className="bg-[#333C4C] text-white rounded-md text-center w-full"
+                  >
                     <Eye size={16} color="white" />
                   </Button>
                 </TableCell>
@@ -116,6 +123,19 @@ const MessagesTable = () => {
           </TableBody>
         </Table>
       </div>
+      <Modal
+        open={open}
+        onOpenChange={setOpen}
+        title="Inquiry Details"
+        width="min-w-[700px]"
+        subTitle="Property : Downtown Office Space"
+        titleIcon={<MessageSquare size={20} color="#374151" />}
+      >
+        <div className="flex flex-col items-end gap-4 mt-3">
+          <CustomerInfo />
+          <CustomerMessage />
+        </div>
+      </Modal>
     </div>
   );
 };
