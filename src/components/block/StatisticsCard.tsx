@@ -37,11 +37,42 @@ const StatisticsCard = ({
           <Icon color={isDefault ? "black " : "#fff"} size={16} />
         </div>
       </div>
-      <span className="font-bold text-[24px]">{value}</span>
-      {/* If the status details is provided show it instead of the description */}
-      <span className="text-[#94A3B8] text-[12px]">{description}</span>
+
+      {/* If the status details is provided change the layout of the card */}
+      {statusDetails ? (
+        <div className="flex flex-col gap-2">
+          <span className="font-bold text-[24px]">{value}</span>
+          <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2">
+              <span className="text-[#94A3B8] text-[12px]">
+                {statusDetails?.available} Available
+              </span>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="text-[#94A3B8] text-[12px]">
+                {statusDetails?.pending} Pending
+              </span>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="text-[#94A3B8] text-[12px]">
+                {statusDetails?.sold} Sold
+              </span>
+            </div>
+          </div>
+        </div>
+      ) : (
+        <span className="font-bold text-[24px]">{value}</span>
+      )}
+
+      {/* don't show the description if the status details is provided */}
+
+      {!statusDetails ? (
+        <span className="text-[#94A3B8] text-[12px]">{description}</span>
+      ) : (
+        <span></span>
+      )}
       <div className="absolute font-normal bottom-1 right-1 z-50">
-        {!isDefault && <Icon color={"#e5eaf0"} size={60} />}
+        {!isDefault && !statusDetails && <Icon color={"#e5eaf0"} size={60} />}
       </div>
     </div>
   );
