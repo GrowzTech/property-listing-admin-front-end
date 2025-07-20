@@ -18,11 +18,6 @@ export default function CustomerInfo() {
           value: "+1 234 567 890",
           icon: <PhoneCall size={13} />,
         },
-        {
-          label: "Inquiry Date",
-          value: "Wed , Jul 16 , 2025 ,12:15 PM",
-          icon: <Calendar size={13} />,
-        },
       ]}
     />
   );
