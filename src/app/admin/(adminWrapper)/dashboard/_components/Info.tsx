@@ -1,4 +1,4 @@
-import { Building, TrendingUp, Users } from "lucide-react";
+import { Building, Users } from "lucide-react";
 import React from "react";
 
 const Info = ({}) => {
@@ -14,12 +14,6 @@ const Info = ({}) => {
       description: "Respond to messages",
       icon: <Users color="#1EBB58" size={16} />,
       color: "bg-[#DCFCE7]",
-    },
-    {
-      title: "View Analytics",
-      description: "Track performance",
-      icon: <TrendingUp color="#A048F2" size={16} />,
-      color: "bg-[#F3E8FF]",
     },
   ];
   return (
