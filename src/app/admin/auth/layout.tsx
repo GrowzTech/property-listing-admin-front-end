@@ -5,7 +5,7 @@ import { ReactNode } from "react";
 export default function AuthLayout({ children }: { children: ReactNode }) {
   return (
     <AuthRoutes>
-      <div>{children}</div>
+      <div className="font-literata">{children}</div>
     </AuthRoutes>
   );
 }

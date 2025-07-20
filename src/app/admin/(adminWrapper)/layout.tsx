@@ -14,7 +14,7 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
         <div className="absolute py-4 px-3 flex justify-center items-center z-50 ">
           <SidebarTrigger color="#374151" />
         </div>
-        <div className="w-full h-screen bg-[#F9FAFB] text-black ">
+        <div className="w-full h-screen bg-[#F9FAFB] text-black font-inter">
           {children}
         </div>
       </div>
