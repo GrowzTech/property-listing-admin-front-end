@@ -25,7 +25,7 @@ const Page = () => {
             </span>
           </div>
           <Link
-            href="/admin/properties"
+            href="/admin/add-property"
             className="flex items-center justify-between gap-2 bg-[#1C7ED6] rounded-md py-2 px-4"
           >
             <Plus color="#FFFFFF" />

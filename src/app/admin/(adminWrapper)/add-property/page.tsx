@@ -20,7 +20,7 @@ const Page = () => {
       <div className="flex flex-col gap-5 p-4 w-full">
         <div className="flex gap-4 items-center">
           <Link
-            href="/admin/properties"
+            href="/admin/add-property"
             className="flex items-center justify-between gap-2 border border-[#E2E8F0] rounded-md py-2 px-4"
           >
             <ArrowLeft color="black" />
