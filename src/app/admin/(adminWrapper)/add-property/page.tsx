@@ -7,7 +7,7 @@ import { ArrowLeft } from "lucide-react";
 import PropertyDimensions from "./_components/PropertyDimensions";
 import PropertySpecs from "./_components/PropertySpecs";
 import PropertyImage from "./_components/PropertyImage";
-import FeaturesAndAmenities from "./_components/FeaturesAndAmenities";
+// import FeaturesAndAmenities from "./_components/FeaturesAndAmenities";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
@@ -41,7 +41,8 @@ const Page = () => {
         <PropertyDimensions />
         <PropertySpecs />
         <PropertyImage />
-        <FeaturesAndAmenities />
+        {/* See if the client wants to add features and amenities */}
+        {/* <FeaturesAndAmenities /> */}
         <div className="flex items-center justify-between w-full mt-3">
           <div className="flex gap-3 items-center">
             <Checkbox className="border-black" id={`terms`} />
