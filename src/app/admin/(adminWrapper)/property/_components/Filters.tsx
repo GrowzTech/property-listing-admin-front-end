@@ -78,13 +78,14 @@ const Filters = ({
           />
         </div>
         <div className="flex items-center gap-4 w-full">
+          {/* Change the slider to range inputs */}
           <div className="w-1/3">
             <SliderInput
               label={`Price: $0 - $${progress}`}
               value={progress}
               onChange={setProgress}
               min={0}
-              max={100}
+              max={1000000}
               step={5}
               color="red"
               className="bg-amber-100 text-[red]   [&>div]:bg-blue-500"

@@ -4,7 +4,7 @@ import React from "react";
 import BasicInfo from "./_components/BasicInfo";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
-import PropertyDimensions from "./_components/PropertyDimensions";
+// import PropertyDimensions from "./_components/PropertyDimensions";
 import PropertySpecs from "./_components/PropertySpecs";
 import PropertyImage from "./_components/PropertyImage";
 // import FeaturesAndAmenities from "./_components/FeaturesAndAmenities";
@@ -38,7 +38,7 @@ const Page = () => {
           </div>
         </div>
         <BasicInfo />
-        <PropertyDimensions />
+        {/* <PropertyDimensions /> */}
         <PropertySpecs />
         <PropertyImage />
         {/* See if the client wants to add features and amenities */}

@@ -10,7 +10,7 @@ import PropertyTableView from "./_components/PropertyTableView";
 
 const Page = () => {
   const [displayMode, setDisplayMode] = useState("gridView");
-  const [toggleFilters, setToggleFilters] = useState(false);
+  const [toggleFilters, setToggleFilters] = useState(true);
   return (
     <div className="flex flex-col gap-3 w-full">
       <Header />
