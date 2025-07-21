@@ -1,11 +1,33 @@
+import { useState } from "react";
 import TextInput from "@/components/block/FormInput";
 import FormWrapper from "@/components/block/FormWrapper";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Home } from "lucide-react";
-import React from "react";
+import MapModal from "./MapModal";
 
 const BasicInfo = () => {
+  const [address, setAddress] = useState("");
+  const [mapOpen, setMapOpen] = useState(false);
+
+  const handleMapSelect = async (location: { lat: number; lng: number }) => {
+    try {
+      const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
+      const response = await fetch(
+        `https://maps.googleapis.com/maps/api/geocode/json?latlng=${location.lat},${location.lng}&key=${apiKey}`
+      );
+      const data = await response.json();
+      if (data.status === "OK" && data.results.length > 0) {
+        setAddress(data.results[0].formatted_address);
+      } else {
+        setAddress(`Lat: ${location.lat}, Lng: ${location.lng}`);
+      }
+    } catch (error) {
+      setAddress(`Lat: ${location.lat}, Lng: ${location.lng}`);
+    }
+    setMapOpen(false);
+  };
+
   return (
     <FormWrapper
       title="Basic Information"
@@ -76,8 +98,16 @@ const BasicInfo = () => {
         <TextInput
           label="Full Address"
           isRequired
-          placeholder="e.g., 123 Ocean Drive, Paradise Bay"
+          placeholder="Click here to open the map"
           type="text"
+          value={address}
+          onFocus={() => setMapOpen(true)}
+          readOnly
+        />
+        <MapModal
+          open={mapOpen}
+          onClose={() => setMapOpen(false)}
+          onSelect={handleMapSelect}
         />
       </div>
     </FormWrapper>
