@@ -1,14 +1,36 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import TextInput from "@/components/block/FormInput";
 import FormWrapper from "@/components/block/FormWrapper";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Home } from "lucide-react";
 import MapModal from "./MapModal";
+import { Coordinate, Property } from "@/lib/features/property/type";
 
-const BasicInfo = () => {
+const BasicInfo = ({
+  onChange,
+}: {
+  onChange: (data: Partial<Property>) => void;
+}) => {
   const [address, setAddress] = useState("");
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [price, setPrice] = useState("");
+  const [status, setStatus] = useState("available");
   const [mapOpen, setMapOpen] = useState(false);
+  const [coordinate, setCoordinate] = useState<Coordinate>();
+
+  useEffect(() => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    onChange({
+      title,
+      description,
+      price: Number(price),
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      status: status as any,
+      location: coordinate,
+    });
+  }, [title, description, price, status, address]);
 
   const handleMapSelect = async (location: { lat: number; lng: number }) => {
     try {
@@ -22,6 +44,7 @@ const BasicInfo = () => {
       } else {
         setAddress(`Lat: ${location.lat}, Lng: ${location.lng}`);
       }
+      setCoordinate({ longitude: location.lng, latitude: location.lat });
     } catch (error) {
       setAddress(`Lat: ${location.lat}, Lng: ${location.lng}`);
     }
@@ -39,19 +62,25 @@ const BasicInfo = () => {
         <TextInput
           label="Property Name"
           isRequired
-          placeholder="e.g., Luxury Oceanfront Villa with Private Beach Access"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+          placeholder="e.g., Luxury Oceanfront Villa"
           type="text"
         />
         <TextInput
           label="Description"
           isRequired
-          placeholder="Provide a detailed description of the property..."
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+          placeholder="Provide a detailed description..."
           type="text"
         />
         <div className="flex items-center gap-4 w-full">
           <TextInput
             label="Price Amount"
             isRequired
+            value={price}
+            onChange={(e) => setPrice(e.target.value)}
             className="flex-1 w-1/2"
             placeholder="Enter price"
             type="text"
@@ -61,37 +90,20 @@ const BasicInfo = () => {
               Status*
             </Label>
             <div className="flex items-center gap-4 mt-3">
-              <div className="flex items-center gap-2">
-                <Input
-                  id="available"
-                  type="radio"
-                  name="status"
-                  value="available"
-                  defaultChecked
-                  className="size-5"
-                />
-                <Label htmlFor="available">Available</Label>
-              </div>
-              <div className="flex items-center gap-2">
-                <Input
-                  id="pending"
-                  type="radio"
-                  name="status"
-                  value="pending"
-                  className="size-5"
-                />
-                <Label htmlFor="pending">Pending</Label>
-              </div>
-              <div className="flex items-center gap-2">
-                <Input
-                  id="sold"
-                  type="radio"
-                  name="status"
-                  value="sold"
-                  className="size-5"
-                />
-                <Label htmlFor="sold">Sold</Label>
-              </div>
+              {["available", "pending", "sold"].map((s) => (
+                <div key={s} className="flex items-center gap-2">
+                  <Input
+                    id={s}
+                    type="radio"
+                    name="status"
+                    value={s}
+                    checked={status === s}
+                    onChange={() => setStatus(s)}
+                    className="size-5"
+                  />
+                  <Label htmlFor={s}>{s[0].toUpperCase() + s.slice(1)}</Label>
+                </div>
+              ))}
             </div>
           </div>
         </div>

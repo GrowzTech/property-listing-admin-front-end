@@ -27,8 +27,9 @@ function* userLoginSaga(action: PayloadAction<ILoginData>) {
     }
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  } catch (error: { message?: string } | any) {
-    toast.error("Login failed: " + (error?.message || "Unknown error"));
+  } catch (error: unknown) {
+    const err = error as { message?: string };
+    toast.error("Login failed: " + (err?.message || "Unknown error"));
   } finally {
     yield put(actions.setIsLoggingIn(false));
   }

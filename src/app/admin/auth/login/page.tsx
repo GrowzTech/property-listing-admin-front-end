@@ -17,7 +17,7 @@ import Link from "next/link";
 
 const Page = () => {
   // For now redirect to dashboard
-  redirect("/admin/dashboard");
+  // redirect("/admin/dashboard");
 
   const dispatch = useAppDispatch();
   const [showPassword, setShowPassword] = useState(false);

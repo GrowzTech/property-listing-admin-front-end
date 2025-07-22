@@ -1,6 +1,7 @@
 const bases = {
   user: "users",
   auth: "auth",
+  property:"property"
 };
 export const apiRoutes = {
   auth: {
@@ -9,4 +10,8 @@ export const apiRoutes = {
     logout: `${bases.auth}/logout`,
   },
   user: {},
+  property: {
+    property: `${bases.property}`,
+    image: `${bases.property}/:id/upload-images`,
+  },
 };

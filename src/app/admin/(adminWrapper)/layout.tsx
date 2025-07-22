@@ -7,7 +7,7 @@ import { AppSidebar } from "@/components/block/Sidebar";
 
 export default function AdminLayout({ children }: { children: ReactNode }) {
   return (
-    // <ProtectedRoute>
+    <ProtectedRoute>
     <SidebarProvider>
       <AppSidebar />
       <div className=" w-screen h-screen text-black bg-[#F9FAFB] relative">
@@ -19,6 +19,6 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
         </div>
       </div>
     </SidebarProvider>
-    // </ProtectedRoute>
+     </ProtectedRoute>
   );
 }

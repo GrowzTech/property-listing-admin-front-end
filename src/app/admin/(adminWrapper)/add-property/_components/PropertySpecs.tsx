@@ -1,9 +1,77 @@
+import { useEffect, useState } from "react";
 import TextInput from "@/components/block/FormInput";
 import FormWrapper from "@/components/block/FormWrapper";
 import { Ruler } from "lucide-react";
-import React from "react";
+import { Property } from "@/lib/features/property/type";
 
-const PropertySpecs = () => {
+const PropertySpecs = ({
+  onChange,
+}: {
+  onChange: (data: Partial<Property>) => void;
+}) => {
+  const [acreage, setAcreage] = useState("");
+  const [parcelSize, setParcelSize] = useState("");
+  const [state, setState] = useState("");
+  const [gps, setGps] = useState("");
+  const [zip, setZip] = useState("");
+  const [parcelNumber, setParcelNumber] = useState("");
+  const [currentZoning, setCurrentZoning] = useState("");
+  const [conveyance, setConveyance] = useState("");
+  const [generalElevation, setGeneralElevation] = useState("");
+  const [taxes, setTaxes] = useState("");
+  const [sewer, setSewer] = useState("");
+  const [city, setCity] = useState("");
+  const [access, setAccess] = useState("");
+  const [terrain, setTerrain] = useState("");
+  const [hoaFee, setHoaFee] = useState("");
+  const [water, setWater] = useState("");
+  const [phone, setPhone] = useState("");
+  const [power, setPower] = useState("");
+
+  useEffect(() => {
+    onChange({
+      acreage: Number(acreage),
+      parcel_size: Number(parcelSize),
+      state,
+      gps: Number(gps),
+      zip: Number(zip),
+      parcel_number: String(parcelNumber),
+      current_zoning: currentZoning,
+      conveyance,
+      general_elevation: generalElevation,
+      taxes: Number(taxes),
+      sewer,
+      city,
+      access,
+      terrain,
+      hoa_fee: Number(hoaFee),
+      water,
+      phone,
+      power,
+      area_size: Number(acreage), // duplicate of acreage
+      area_unit: "sqm", // assume static for now
+    });
+  }, [
+    acreage,
+    parcelSize,
+    state,
+    gps,
+    zip,
+    parcelNumber,
+    currentZoning,
+    conveyance,
+    generalElevation,
+    taxes,
+    sewer,
+    city,
+    access,
+    terrain,
+    hoaFee,
+    water,
+    phone,
+    power,
+  ]);
+
   return (
     <FormWrapper
       title="More Details"
@@ -12,124 +80,106 @@ const PropertySpecs = () => {
       icon={<Ruler size={14} color={"#E1C000"} />}
     >
       <div className="flex flex-col gap-6 px-6 w-full">
-        <div className="flex items-center gap-4 w-full">
+        <div className="flex gap-4">
           <TextInput
             label="Acreage"
-            className=" flex-1"
-            placeholder="Acres"
-            type="text"
+            value={acreage}
+            onChange={(e) => setAcreage(e.target.value)}
           />
           <TextInput
             label="Parcel Size"
-            className="flex-1"
-            placeholder="Acres"
-            type="text"
+            value={parcelSize}
+            onChange={(e) => setParcelSize(e.target.value)}
           />
           <TextInput
             label="State"
-            className=" flex-1"
-            placeholder="State"
-            type="text"
+            value={state}
+            onChange={(e) => setState(e.target.value)}
           />
         </div>
-        <div className="flex items-center gap-4 w-full">
+        <div className="flex gap-4">
           <TextInput
             label="GPS"
-            placeholder="Square feet"
-            type="text"
-            className=" flex-1"
+            value={gps}
+            onChange={(e) => setGps(e.target.value)}
           />
           <TextInput
             label="Zip"
-            className="flex-1"
-            placeholder="Zip"
-            type="text"
+            value={zip}
+            onChange={(e) => setZip(e.target.value)}
           />
           <TextInput
             label="Parcel Number"
-            className=" flex-1"
-            placeholder="Parcel Number"
-            type="text"
+            value={parcelNumber}
+            onChange={(e) => setParcelNumber(e.target.value)}
           />
         </div>
-        <div className="flex items-center gap-4 w-full">
+        <div className="flex gap-4">
           <TextInput
             label="Current Zoning"
-            placeholder="Current Zoning"
-            type="text"
-            className=" flex-1"
+            value={currentZoning}
+            onChange={(e) => setCurrentZoning(e.target.value)}
           />
           <TextInput
             label="Conveyance"
-            className="flex-1"
-            placeholder="Conveyance"
-            type="text"
+            value={conveyance}
+            onChange={(e) => setConveyance(e.target.value)}
           />
           <TextInput
             label="General Elevation"
-            className=" flex-1"
-            placeholder="General Elevation"
-            type="text"
+            value={generalElevation}
+            onChange={(e) => setGeneralElevation(e.target.value)}
           />
         </div>
-        <div className="flex items-center gap-4 w-full">
+        <div className="flex gap-4">
           <TextInput
             label="Taxes"
-            placeholder="Taxes"
-            type="text"
-            className=" flex-1"
+            value={taxes}
+            onChange={(e) => setTaxes(e.target.value)}
           />
           <TextInput
             label="Sewer"
-            className="flex-1"
-            placeholder="Sewer"
-            type="text"
+            value={sewer}
+            onChange={(e) => setSewer(e.target.value)}
           />
           <TextInput
             label="City"
-            className=" flex-1"
-            placeholder="City"
-            type="text"
+            value={city}
+            onChange={(e) => setCity(e.target.value)}
           />
         </div>
-        <div className="flex items-center gap-4 w-full">
+        <div className="flex gap-4">
           <TextInput
             label="Access"
-            className="flex-1"
-            placeholder="Sewer"
-            type="text"
+            value={access}
+            onChange={(e) => setAccess(e.target.value)}
           />
           <TextInput
             label="Terrain"
-            className=" flex-1"
-            placeholder="Terrain"
-            type="text"
+            value={terrain}
+            onChange={(e) => setTerrain(e.target.value)}
           />
           <TextInput
             label="HOA Fee"
-            placeholder="HOA Fee"
-            type="text"
-            className=" flex-1"
+            value={hoaFee}
+            onChange={(e) => setHoaFee(e.target.value)}
           />
         </div>
-        <div className="flex items-center gap-4 w-full">
+        <div className="flex gap-4">
           <TextInput
             label="Water"
-            className="flex-1"
-            placeholder="Water"
-            type="text"
+            value={water}
+            onChange={(e) => setWater(e.target.value)}
           />
           <TextInput
             label="Phone"
-            className=" flex-1"
-            placeholder="Phone"
-            type="text"
+            value={phone}
+            onChange={(e) => setPhone(e.target.value)}
           />
           <TextInput
             label="Power"
-            placeholder="Power"
-            type="text"
-            className=" flex-1"
+            value={power}
+            onChange={(e) => setPower(e.target.value)}
           />
         </div>
       </div>
