@@ -1,6 +1,6 @@
 "use client";
 import Header from "@/components/block/Header";
-import React from "react";
+import React, { useState } from "react";
 import BasicInfo from "./_components/BasicInfo";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
@@ -12,8 +12,30 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { Spinner } from "@/components/block/Spinner";
+import { useAppDispatch } from "@/lib/hooks";
+import { propertyActions as actions } from "@/lib/features/property/propertySlice";
+import { Property } from "@/lib/features/property/type";
 
 const Page = () => {
+  const dispatch = useAppDispatch();
+
+  // Form state (merged from BasicInfo and PropertySpecs)
+  const [formData, setFormData] = useState<Partial<Property>>({});
+
+  const handleUpdate = (data: Partial<Property>) => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    setFormData((prev: any) => ({ ...prev, ...data }));
+  };
+
+  const handleSubmit = () => {
+    const { title, ...rest } = formData;
+    if (!title) {
+      alert("Title is required");
+      return;
+    }
+    console.log(formData)
+    dispatch(actions.addProperty(formData as Omit<Property, "_id">));
+  };
   return (
     <div className="flex flex-col gap-3 w-full">
       <Header />
@@ -37,9 +59,9 @@ const Page = () => {
             </span>
           </div>
         </div>
-        <BasicInfo />
+        <BasicInfo onChange={handleUpdate} />
         {/* <PropertyDimensions /> */}
-        <PropertySpecs />
+        <PropertySpecs onChange={handleUpdate} />
         <PropertyImage />
         {/* See if the client wants to add features and amenities */}
         {/* <FeaturesAndAmenities /> */}
@@ -63,6 +85,7 @@ const Page = () => {
             </Button>
             <Button
               type="submit"
+              onClick={handleSubmit}
               className="bg-[#1C7ED6] p-6 py-3 rounded-md hover:bg-[#1c7fd6f6] text-white flex justify-center items-center gap-1"
             >
               Create Property

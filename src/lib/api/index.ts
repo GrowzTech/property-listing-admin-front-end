@@ -15,7 +15,7 @@ const makeCall = async (config: IAPICallConfig) => {
 
     const header: HeaderObj = {};
     const user: IUserModel | undefined = JSON.parse(
-      window.localStorage.getItem(localStorage.user) || "{}"
+      window.localStorage.getItem("user") || "{}"
     );
 
     if (config.isSecureRoute && user) {
@@ -24,7 +24,6 @@ const makeCall = async (config: IAPICallConfig) => {
       const refreshedAccessToken = await refreshAuth(user);
       if (typeof refreshedAccessToken === "string")
         accessToken = refreshedAccessToken;
-
       header.Authorization = `Bearer ${accessToken}`;
     }
     const response: AxiosResponse = await axios({
@@ -36,14 +35,17 @@ const makeCall = async (config: IAPICallConfig) => {
       responseType: "json",
       onUploadProgress: config.onUploadProgress,
     });
-    if (response.statusText === "OK" || response.statusText === "Created") {
+    if (response.status >= 200 && response.status < 300) {
       return response.data;
     } else {
       throw new APIError(response.data?.code, response.data?.message);
     }
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
-    if (error.response.status === 400 && error.response.data?.errors?.length) {
+    if (
+      error?.response?.status === 400 &&
+      error.response.data?.errors?.length
+    ) {
       throw new APIError(
         error.response.data.code,
         "Validation Error: \n" +
