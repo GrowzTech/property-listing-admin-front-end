@@ -10,7 +10,7 @@ const RecentPropertiesAndInquiries = () => {
   const properties = useAppSelector((state) => state.property.property);
 
   useEffect(() => {
-    dispatch(actions.fetchproperty());
+    dispatch(actions.fetchproperty({limit:"3"}));
   }, []);
 
   const formatPrice = (
@@ -26,8 +26,8 @@ const RecentPropertiesAndInquiries = () => {
     }).format(amount);
   };
 
-  const rows = properties.slice(0, 3).map((prop) => ({
-    photo: "/land-2.jpg", // or prop.images?.[0] || "/default.jpg"
+  const rows = properties.map((prop) => ({
+    photo: "/land-2.jpg", // or prop.images?.[0]
     title: prop.title,
     price: formatPrice(prop.price),
     status: prop.status,

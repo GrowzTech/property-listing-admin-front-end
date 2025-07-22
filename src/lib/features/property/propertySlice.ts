@@ -11,7 +11,12 @@ const propertySlice = createSlice({
   name: "property",
   initialState,
   reducers: {
-    fetchproperty: (state) => {
+    fetchproperty: (
+      state,
+      action: PayloadAction<
+        Record<string, string | number | boolean>
+      >
+    ) => {
       state.loading = true;
       state.error = null;
     },

@@ -6,12 +6,16 @@ import { toast } from "react-toastify";
 import { IPropertyData, Property, PropertyResponse } from "./type"; // adjust imports as needed
 import { apiRoutes } from "@/lib/api/apiRoutes";
 
-function* fetchPropertiesSaga() {
+function* fetchPropertiesSaga(action: PayloadAction<Record<string, string>>) {
   try {
+    const params = action.payload || {};
+    const queryString = new URLSearchParams(params).toString();
+    const fullRoute = `${apiRoutes.property.property}?${queryString}`;
+
     const response: PropertyResponse = yield call(makeCall, {
       method: "GET",
       isSecureRoute: true,
-      route: apiRoutes.property.property,
+      route: fullRoute,
     });
 
     if (response) {
@@ -20,7 +24,7 @@ function* fetchPropertiesSaga() {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: { message?: string } | any) {
     toast.error(
-      "Failed to fetch properties:" + (error?.message || "Unknown error")
+      "Failed to fetch properties: " + (error?.message || "Unknown error")
     );
   }
 }

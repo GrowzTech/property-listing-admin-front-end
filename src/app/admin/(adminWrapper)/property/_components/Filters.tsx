@@ -34,48 +34,69 @@ const Filters = ({
   const [search, setSearch] = useState("");
   const [status, setStatus] = useState("");
   const [sort, setSort] = useState("");
-  const [progress, setProgress] = useState([0]);
-  const [acreageProgress, setAcreageProgress] = useState([0]);
+  const [sortOrder, setSortOrder] = useState("");
+  const [priceRange, setPriceRange] = useState([0, 1000000]);
+  const [acreageRange, setAcreageRange] = useState([0, 100]);
   const [featuredOnly, setFeaturedOnly] = useState(false);
 
   // Sync from URL on mount
   useEffect(() => {
-    const searchVal = searchParams.get("search") || "";
-    const statusVal = searchParams.get("status") || "";
-    const sortVal = searchParams.get("sort") || "";
-    const priceVal = parseInt(searchParams.get("price") || "0");
-    const acreageVal = parseInt(searchParams.get("acreage") || "0");
-    const featuredVal = searchParams.get("featured") === "true";
+    const sp = new URLSearchParams(window.location.search);
 
-    setSearch(searchVal);
-    setStatus(statusVal);
-    setSort(sortVal);
-    setProgress([priceVal]);
-    setAcreageProgress([acreageVal]);
-    setFeaturedOnly(featuredVal);
+    setSearch(sp.get("search") || "");
+    setStatus(sp.get("status") || "");
+
+    const sortParam = sp.get("sort") || "";
+    const sortOrderParam = sp.get("sortOrder") || "";
+    setSort(sortParam);
+    setSortOrder(sortOrderParam);
+
+    const minPrice = parseInt(sp.get("minPrice") || "0");
+    const maxPrice = parseInt(sp.get("maxPrice") || "1000000");
+    setPriceRange([minPrice, maxPrice]);
+
+    const minAcreage = parseInt(sp.get("minAcreage") || "0");
+    const maxAcreage = parseInt(sp.get("maxAcreage") || "100");
+    setAcreageRange([minAcreage, maxAcreage]);
+
+    setFeaturedOnly(sp.get("featured") === "true");
   }, []);
 
-  // Update URL when filters change
+  // Update URL on filter change
   useEffect(() => {
     const params = new URLSearchParams();
 
     if (search) params.set("search", search);
     if (status) params.set("status", status);
     if (sort) params.set("sort", sort);
-    if (progress) params.set("price", progress[0].toString());
-    if (acreageProgress) params.set("acreage", acreageProgress[0].toString());
+    if (sortOrder) params.set("sortOrder", sortOrder);
+
+    params.set("minPrice", priceRange[0].toString());
+    params.set("maxPrice", priceRange[1].toString());
+
+    params.set("minAcreage", acreageRange[0].toString());
+    params.set("maxAcreage", acreageRange[1].toString());
+
     if (featuredOnly) params.set("featured", "true");
 
     router.push("?" + params.toString());
-  }, [search, status, sort, progress, acreageProgress, featuredOnly]);
+  }, [search, status, sort, sortOrder, priceRange, acreageRange, featuredOnly]);
 
   const handleReset = () => {
     setSearch("");
     setStatus("");
     setSort("");
-    setProgress([0]);
-    setAcreageProgress([0]);
+    setSortOrder("");
+    setPriceRange([0, 1000000]);
+    setAcreageRange([0, 100]);
     setFeaturedOnly(false);
+  };
+
+  const handleSortChange = (option: { value: string }) => {
+    if (!option?.value) return;
+    const [field, order] = option.value.split("_");
+    setSort(field);
+    setSortOrder(order === "asc" ? "1" : "-1");
   };
 
   return (
@@ -89,7 +110,7 @@ const Filters = ({
           <Button
             type="button"
             onClick={handleReset}
-            className=" border p-6 py-3 bg-white hover:bg-white rounded-md text-black flex justify-center items-center gap-1"
+            className="border p-6 py-3 bg-white hover:bg-white rounded-md text-black flex justify-center items-center gap-1"
           >
             <X size={8} color="black" />
             Reset
@@ -117,37 +138,37 @@ const Filters = ({
             onSelect={(option) => setStatus(option?.value || "")}
             label="Status"
             isRequired={false}
-            // value={status}
           />
           <DropDown
             options={sortOptions}
             placeholder="Select Sort Option"
-            onSelect={(option) => setSort(option?.value || "")}
+            onSelect={handleSortChange}
             label="Sorted By"
             isRequired={false}
-            // value={sort}
           />
         </div>
 
         <div className="flex items-center gap-4 w-full">
           <div className="w-1/3">
             <SliderInput
-              label={`Price: $0 - $${progress}`}
-              value={progress}
-              onChange={setProgress}
+              label={`Price: $${priceRange[0]} - $${priceRange[1]}`}
+              value={priceRange}
+              onChange={setPriceRange}
               min={0}
               max={1000000}
-              step={5}
+              step={10000}
+              range
             />
           </div>
           <div className="w-1/3">
             <SliderInput
-              label={`Acreage: 0 - ${acreageProgress} acres`}
-              value={acreageProgress}
-              onChange={setAcreageProgress}
+              label={`Acreage: ${acreageRange[0]} - ${acreageRange[1]} acres`}
+              value={acreageRange}
+              onChange={setAcreageRange}
               min={0}
               max={100}
-              step={5}
+              step={1}
+              range
             />
           </div>
           <div className="flex gap-3 items-center">

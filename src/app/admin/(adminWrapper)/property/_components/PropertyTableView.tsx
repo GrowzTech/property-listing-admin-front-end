@@ -12,25 +12,31 @@ import Badge from "@/components/block/Badge";
 import { Edit, Eye, Trash2 } from "lucide-react";
 import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 import { propertyActions as actions } from "@/lib/features/property/propertySlice";
+import { useSearchParams } from "next/navigation";
 
 const PropertyTableView = () => {
   const dispatch = useAppDispatch();
-
   const properties = useAppSelector((state) => state.property.property);
 
+  const searchParams = useSearchParams();
+
   useEffect(() => {
-    dispatch(actions.fetchproperty());
-  }, []);
+    const query: Record<string, string> = {};
+    for (const [key, value] of searchParams.entries()) {
+      query[key] = value;
+    }
 
-   const formatFullDate = (dateString: string): string => {
-  const date = new Date(dateString);
+    dispatch(actions.fetchproperty(query));
+  }, [searchParams]);
 
-  return date.toLocaleDateString("en-US", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  }); // e.g., "July 22, 2025"
-};
+  const formatFullDate = (dateString: string): string => {
+    const date = new Date(dateString);
+    return date.toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    }); // e.g., "July 22, 2025"
+  };
 
   return (
     <div className="flex flex-col gap-6 w-full bg-[#white] border rounded-md">
@@ -63,15 +69,17 @@ const PropertyTableView = () => {
                   className="w-[35px] h-[35px] bg-amber-300 rounded-md"
                 />
               </TableCell>
+              <TableCell className="text-[#2E2E2E]">{property.title}</TableCell>
               <TableCell className="text-[#2E2E2E]">
-                {property.title}
+                ${property.price}
               </TableCell>
-              <TableCell className="text-[#2E2E2E]">${property.price}</TableCell>
               <TableCell className="text-[#2E2E2E]">
                 <Badge color="bg-green-600" label="Available" />
               </TableCell>
               <TableCell className="text-[#2E2E2E]">{property.city}</TableCell>
-              <TableCell className="text-[#2E2E2E]">{formatFullDate(property?.createdAt)}</TableCell>
+              <TableCell className="text-[#2E2E2E]">
+                {formatFullDate(property?.createdAt)}
+              </TableCell>
               <TableCell className="text-[#2E2E2E]">
                 <div className="flex items-center gap-2">
                   <Eye size={16} />
