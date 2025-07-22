@@ -13,40 +13,15 @@ export const PropertyGridView = () => {
     dispatch(actions.fetchproperty());
   }, []);
 
-  // const properties = [
-  //   {
-  //     id: 1,
-  //     title: "Beautiful Family Home",
-  //     location: "123 Main St, Springfield",
-  //     type: "House",
-  //     price: 250000,
-  //     description: "A beautiful family home with a spacious yard.",
-  //     views: 150,
-  //     listedDate: "2023-10-01",
-  //     status: "Available",
-  //   },
-  //   {
-  //     id: 2,
-  //     title: "Modern Apartment",
-  //     location: "456 Elm St, Springfield",
-  //     type: "Apartment",
-  //     price: 180000,
-  //     description: "A modern apartment in the city center.",
-  //     views: 200,
-  //     listedDate: "2023-10-05",
-  //     status: "Available",
-  //   },
-  // ];
+  const formatFullDate = (dateString: string): string => {
+    const date = new Date(dateString);
 
- const formatFullDate = (dateString: string): string => {
-  const date = new Date(dateString);
-
-  return date.toLocaleDateString("en-US", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  }); // e.g., "July 22, 2025"
-};
+    return date.toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    }); // e.g., "July 22, 2025"
+  };
 
   return (
     <div className="flex flex-col gap-6 w-full ">

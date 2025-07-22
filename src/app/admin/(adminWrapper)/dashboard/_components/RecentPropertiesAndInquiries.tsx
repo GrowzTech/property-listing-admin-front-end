@@ -1,28 +1,37 @@
 import TableComponent from "@/components/block/Table";
 import TableWrapper from "@/components/block/TableWrapper";
-import React from "react";
+import React, { useEffect } from "react";
+import { useAppDispatch, useAppSelector } from "@/lib/hooks";
+import { propertyActions as actions } from "@/lib/features/property/propertySlice";
 
 const RecentPropertiesAndInquiries = () => {
-  const rows = [
-    {
-      photo: "/land-2.jpg",
-      title: "Admin",
-      price: "$500,000",
-      status: "Active",
-    },
-    {
-      photo: "/land-2.jpg",
-      title: "Manager",
-      price: "$400,000",
-      status: "Inactive",
-    },
-    {
-      photo: "/land-2.jpg",
-      title: "Manager",
-      price: "$400,000",
-      status: "Inactive",
-    },
-  ];
+  const dispatch = useAppDispatch();
+
+  const properties = useAppSelector((state) => state.property.property);
+
+  useEffect(() => {
+    dispatch(actions.fetchproperty());
+  }, []);
+
+  const formatPrice = (
+    amount: number,
+    currency: string = "USD",
+    locale: string = "en-US"
+  ): string => {
+    return new Intl.NumberFormat(locale, {
+      style: "currency",
+      currency,
+      minimumFractionDigits: 0, // no decimals
+      maximumFractionDigits: 0,
+    }).format(amount);
+  };
+
+  const rows = properties.slice(0, 3).map((prop) => ({
+    photo: "/land-2.jpg", // or prop.images?.[0] || "/default.jpg"
+    title: prop.title,
+    price: formatPrice(prop.price),
+    status: prop.status,
+  }));
 
   const columns = [
     { key: "photo", label: "Photo", type: "image" },
