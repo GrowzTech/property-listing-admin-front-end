@@ -6,8 +6,8 @@ import { Button } from "../ui/button";
 
 const PropertyCard = ({
   title,
-  location,
-  type,
+  // location,
+  // type,
   price,
   description,
   views,
@@ -53,14 +53,14 @@ const PropertyCard = ({
             <span className="font-bold text-[22px] text-[#333C4C]">
               {title}
             </span>
-            <span className="flex font-medium text-[#6B7280] items-center gap-3">
+            {/* <span className="flex font-medium text-[#6B7280] items-center gap-3">
               <MapPin size={16} />
               {location}
             </span>
             <span className="flex font-medium text-[#6B7280] items-center gap-3">
               <Home size={16} />
               {type}
-            </span>
+            </span> */}
           </div>
           <div className="flex flex-col items-end gap-0">
             <span className="font-bold text-[28px] text-[#333C4C]">
@@ -79,7 +79,8 @@ const PropertyCard = ({
             <Badge
               label={status.toUpperCase()}
               color={
-                statusColorMap[status as keyof typeof statusColorMap] || "bg-green-500"
+                statusColorMap[status as keyof typeof statusColorMap] ||
+                "bg-green-500"
               }
             />
             <span className=" text-[#6B7280] text-[12px]">
