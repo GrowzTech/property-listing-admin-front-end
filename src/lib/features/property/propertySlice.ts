@@ -13,9 +13,7 @@ const propertySlice = createSlice({
   reducers: {
     fetchproperty: (
       state,
-      action: PayloadAction<
-        Record<string, string | number | boolean>
-      >
+      action: PayloadAction<Record<string, string | number | boolean>>
     ) => {
       state.loading = true;
       state.error = null;
@@ -80,6 +78,12 @@ const propertySlice = createSlice({
 
     clearError: (state) => {
       state.error = null;
+    },
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-function-type
+    addImage: (state, action: PayloadAction<{ files: File[], onSuccess?: Function, onError?: Function }>) => {
+    },
+    imageUploadSuccess: (_state, action) => {
+      console.log("Uploaded URLs:", action.payload); // handle response however you want
     },
   },
 });

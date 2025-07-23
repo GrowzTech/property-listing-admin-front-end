@@ -12,6 +12,6 @@ export const apiRoutes = {
   user: {},
   property: {
     property: `${bases.property}`,
-    image: `${bases.property}/:id/upload-images`,
+    uploadmage: `${bases.property}/upload-images`,
   },
 };

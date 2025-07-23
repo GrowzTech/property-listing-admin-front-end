@@ -21,28 +21,76 @@ const Page = () => {
 
   // Form state (merged from BasicInfo and PropertySpecs)
   const [formData, setFormData] = useState<Partial<Property>>({});
+  const [images, setImages] = useState<File[]>([]);
+  const [captions, setCaptions] = useState<string[]>([]);
+  const [photos, setPhotos] = useState<{ url: string; caption: string }[]>([]);
 
   const handleUpdate = (data: Partial<Property>) => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     setFormData((prev: any) => ({ ...prev, ...data }));
   };
-
-  const handleSubmit = () => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const handleSubmit = async () => {
     const { title, ...rest } = formData;
     if (!title) {
       alert("Title is required");
       return;
     }
-    console.log(formData)
-    dispatch(actions.addProperty(formData as Omit<Property, "_id">));
+    console.log(formData);
+    if (!formData.title) {
+      alert("Title is required");
+      return;
+    }
+
+    setIsSubmitting(true); // start loading
+
+    if (images.length > 0) {
+      try {
+        // Dispatch and wait for uploaded image URLs
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        dispatch(
+          actions.addImage({
+            files: images,
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            onSuccess: (responseData: any) => {
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
+              console.log(responseData);
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
+              const updatedPhotos = responseData.map((data: any, idx: any) => ({
+                index: data.index,
+                url: data.url,
+                caption: captions[idx] || "",
+              }));
+              setPhotos(updatedPhotos);
+              handleUpdate({ images: updatedPhotos });
+
+              console.log(updatedPhotos, formData);
+              const finalData = { ...formData, images: updatedPhotos };
+              dispatch(actions.addProperty(finalData as Omit<Property, "_id">));
+            },
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            onError: (err: any) => {
+              console.error("Upload failed", err);
+            },
+          })
+        );
+      } catch (err) {
+        console.error("Failed to add property", err);
+      } finally {
+        setIsSubmitting(false); // stop loading in all cases
+      }
+    } else {
+      dispatch(actions.addProperty(formData as Omit<Property, "_id">));
+    }
   };
+  console.log(formData);
   return (
     <div className="flex flex-col gap-3 w-full">
       <Header />
       <div className="flex flex-col gap-5 p-4 w-full">
         <div className="flex gap-4 items-center">
           <Link
-            href="/admin/add-property"
+            href="/admin/property"
             className="flex items-center justify-between gap-2 border border-[#E2E8F0] rounded-md py-2 px-4"
           >
             <ArrowLeft color="black" />
@@ -62,7 +110,13 @@ const Page = () => {
         <BasicInfo onChange={handleUpdate} />
         {/* <PropertyDimensions /> */}
         <PropertySpecs onChange={handleUpdate} />
-        <PropertyImage />
+        <PropertyImage
+          onChange={handleUpdate}
+          images={images}
+          setImages={setImages}
+          captions={captions}
+          setCaptions={setCaptions}
+        />
         {/* See if the client wants to add features and amenities */}
         {/* <FeaturesAndAmenities /> */}
         <div className="flex items-center justify-between w-full mt-3">
@@ -86,9 +140,16 @@ const Page = () => {
             <Button
               type="submit"
               onClick={handleSubmit}
+              disabled={isSubmitting}
               className="bg-[#1C7ED6] p-6 py-3 rounded-md hover:bg-[#1c7fd6f6] text-white flex justify-center items-center gap-1"
             >
-              Create Property
+              {isSubmitting ? (
+                <>
+                  <Spinner /> Creating...
+                </>
+              ) : (
+                "Create Property"
+              )}
               {false && <Spinner />}
             </Button>
           </div>

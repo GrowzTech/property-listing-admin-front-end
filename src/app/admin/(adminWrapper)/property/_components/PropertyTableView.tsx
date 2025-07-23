@@ -8,7 +8,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import Image from "next/image";
-import Badge from "@/components/block/Badge";
+import Badge, { statusColorMap } from "@/components/block/Badge";
 import { Edit, Eye, Trash2 } from "lucide-react";
 import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 import { propertyActions as actions } from "@/lib/features/property/propertySlice";
@@ -74,7 +74,13 @@ const PropertyTableView = () => {
                 ${property.price}
               </TableCell>
               <TableCell className="text-[#2E2E2E]">
-                <Badge color="bg-green-600" label="Available" />
+                <Badge
+                  label={property.status.toUpperCase()}
+                  color={
+                    statusColorMap[property.status as keyof typeof statusColorMap] ||
+                    "bg-green-500"
+                  }
+                />
               </TableCell>
               <TableCell className="text-[#2E2E2E]">{property.city}</TableCell>
               <TableCell className="text-[#2E2E2E]">

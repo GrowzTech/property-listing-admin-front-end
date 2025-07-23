@@ -26,12 +26,18 @@ const makeCall = async (config: IAPICallConfig) => {
         accessToken = refreshedAccessToken;
       header.Authorization = `Bearer ${accessToken}`;
     }
+    const isFormData =
+      typeof FormData !== "undefined" && config.body instanceof FormData;
+
     const response: AxiosResponse = await axios({
       method: config.method,
       params: config.query,
       data: config.body,
       url: fullURL,
-      headers: { ...header },
+      // headers: { ...header },
+      headers: isFormData
+        ? { ...header } // Let browser set Content-Type (with boundary)
+        : { ...header, "Content-Type": "application/json" },
       responseType: "json",
       onUploadProgress: config.onUploadProgress,
     });

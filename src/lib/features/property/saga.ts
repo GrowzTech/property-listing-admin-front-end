@@ -68,6 +68,40 @@ function* addPropertySaga(action: PayloadAction<IPropertyData>) {
   }
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unsafe-function-type
+function* uploadPropertyImagesSaga(action: PayloadAction<{ files: File[], onSuccess?: Function, onError?: Function }>) {
+  try {
+    const formData = new FormData();
+    action.payload.files.forEach((file) => {
+      formData.append("photos", file);
+    });
+
+     const response: {
+      message: string;
+      data: { index: number; url: string }[];
+    } = yield call(makeCall, {
+      method: "POST",
+      route: apiRoutes.property.uploadmage,
+      isSecureRoute: true,
+      body: formData,
+    });
+
+    yield put(actions.imageUploadSuccess(response.data));
+    toast.success(response.message || "Image/s uploaded successfully!");
+
+    if (action.payload.onSuccess) {
+      action.payload.onSuccess(response.data);
+    }
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  } catch (error: any) {
+    toast.error("Image upload failed: " + (error.message || "Unknown error"));
+    if (action.payload.onError) {
+      action.payload.onError(error);
+    }
+  }
+}
+
+
 // function* updatePropertySaga(action: PayloadAction<Property>) {
 //   try {
 //     const updatedProperty: Property = yield call(makeCall, {
@@ -107,6 +141,7 @@ export function* propertySaga() {
   yield takeLatest(actions.fetchproperty.type, fetchPropertiesSaga);
   yield takeLatest(actions.fetchSingleproperty.type, fetchSinglePropertySaga);
   yield takeLatest(actions.addProperty.type, addPropertySaga);
+  yield takeLatest(actions.addImage.type, uploadPropertyImagesSaga);
   // yield takeLatest(actions.updateProperty.type, updatePropertySaga);
   // yield takeLatest(actions.deleteProperty.type, deletePropertySaga);
 }

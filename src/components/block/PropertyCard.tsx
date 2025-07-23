@@ -1,7 +1,7 @@
 import { Edit, Eye, Home, MapPin, Trash2 } from "lucide-react";
 import Image from "next/image";
 import React from "react";
-import Badge from "./Badge";
+import Badge, { statusColorMap } from "./Badge";
 import { Button } from "../ui/button";
 
 const PropertyCard = ({
@@ -76,7 +76,12 @@ const PropertyCard = ({
         </span>
         <div className="flex justify-between mt-5 items-center">
           <div className="flex-1 h-full flex items-center bottom-0  gap-2">
-            <Badge label="Available" color="bg-green-500" />
+            <Badge
+              label={status.toUpperCase()}
+              color={
+                statusColorMap[status as keyof typeof statusColorMap] || "bg-green-500"
+              }
+            />
             <span className=" text-[#6B7280] text-[12px]">
               {views} Views • Listed {listedDate}
             </span>

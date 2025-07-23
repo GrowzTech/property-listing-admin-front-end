@@ -31,24 +31,24 @@ const PropertySpecs = ({
   useEffect(() => {
     onChange({
       acreage: Number(acreage),
-      parcel_size: Number(parcelSize),
+      parcel_size: String(parcelSize),
       state,
-      gps: Number(gps),
-      zip: Number(zip),
+      gps: String(gps),
+      zip: String(zip),
       parcel_number: String(parcelNumber),
       current_zoning: currentZoning,
       conveyance,
       general_elevation: generalElevation,
-      taxes: Number(taxes),
+      taxes: String(taxes),
       sewer,
       city,
       access,
       terrain,
-      hoa_fee: Number(hoaFee),
+      hoa_fee: String(hoaFee),
       water,
       phone,
       power,
-      area_size: Number(acreage), // duplicate of acreage
+      area_size: String(acreage), // duplicate of acreage
       area_unit: "sqm", // assume static for now
     });
   }, [

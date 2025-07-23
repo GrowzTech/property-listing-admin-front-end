@@ -1,12 +1,24 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import { Star, Upload } from "lucide-react";
 import Image from "next/image";
 import { Input } from "../ui/input";
 
-export function ImageUploader() {
+type ImageUploaderProps = {
+  images: File[];
+  setImages: React.Dispatch<React.SetStateAction<File[]>>;
+  captions: string[];
+  setCaptions: React.Dispatch<React.SetStateAction<string[]>>;
+};
+
+export function ImageUploader({
+  images,
+  captions,
+  setCaptions,
+  setImages,
+}: ImageUploaderProps) {
   const [files, setFiles] = useState<File[]>([]);
   const [previews, setPreviews] = useState<string[]>([]);
   const [primaryImage, setPrimaryImage] = useState<string | null>(null);
@@ -26,10 +38,32 @@ export function ImageUploader() {
     if (imageFiles.length === 0) return;
 
     setFiles((prev) => [...prev, ...imageFiles]);
+    setImages((prev) => [...prev, ...imageFiles]);
     setPreviews((prev) => [
       ...prev,
       ...imageFiles.map((file) => URL.createObjectURL(file)),
     ]);
+  };
+
+  // Whenever `images` change, update previews and captions length to match
+  useEffect(() => {
+    const newPreviews = images.map((file) => URL.createObjectURL(file));
+    setPreviews(newPreviews);
+
+    // Keep captions array length synced with images length
+    setCaptions((prev) => {
+      if (prev.length === images.length) return prev;
+      // Add empty captions for new images
+      return [...prev, ...new Array(images.length - prev.length).fill("")];
+    });
+  }, [images, setCaptions]);
+
+  const updateCaption = (index: number, value: string) => {
+    setCaptions((prev) => {
+      const newCaptions = [...prev];
+      newCaptions[index] = value;
+      return newCaptions;
+    });
   };
 
   const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
@@ -50,6 +84,7 @@ export function ImageUploader() {
     if (imageFiles.length === 0) return;
 
     setFiles((prev) => [...prev, ...imageFiles]);
+    setImages((prev) => [...prev, ...imageFiles]);
     setPreviews((prev) => [
       ...prev,
       ...imageFiles.map((file) => URL.createObjectURL(file)),
@@ -114,7 +149,11 @@ export function ImageUploader() {
                 style={{ objectFit: "cover", height: "250px" }}
               />
               <div className="absolute bottom-0 p-2 rounded-b-md bg-white z-50 w-full">
-                <Input placeholder="Caption" />
+                <Input
+                  placeholder="Caption"
+                  value={captions[idx] || ""}
+                  onChange={(e) => updateCaption(idx, e.target.value)}
+                />
               </div>
               {primaryImage === src && (
                 <div className="absolute top-2 left-2 bg-[#EAB308] px-2 rounded-full flex items-center gap-2 text-[white]">
