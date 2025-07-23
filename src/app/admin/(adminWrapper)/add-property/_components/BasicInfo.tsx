@@ -36,7 +36,7 @@ const BasicInfo = ({
     try {
       const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
       const response = await fetch(
-        `https://maps.googleapis.com/maps/api/geocode/json?latlng=${location.lat},${location.lng}&key=${apiKey}`
+        `https://maps.googleapis.com/maps/api/geocode/json?latlng=${location.lat},${location.lng}&key=AIzaSyBpq49uxgcR1hSne0eaHvhBQ66HuMNsBgs`
       );
       const data = await response.json();
       if (data.status === "OK" && data.results.length > 0) {

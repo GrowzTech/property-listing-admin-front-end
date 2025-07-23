@@ -116,7 +116,11 @@ const Filters = ({
             Reset
           </Button>
           <div className="flex items-center justify-center p-2 bg-white border rounded-sm">
-            <X onClick={() => setToggleFilters(false)} size={18} color="black" />
+            <X
+              onClick={() => setToggleFilters(false)}
+              size={18}
+              color="black"
+            />
           </div>
         </div>
       </div>
@@ -157,7 +161,7 @@ const Filters = ({
               min={0}
               max={1000000}
               step={10000}
-              range
+              range={"true"}
             />
           </div>
           <div className="w-1/3">
@@ -168,7 +172,7 @@ const Filters = ({
               min={0}
               max={100}
               step={1}
-              range
+              range={"true"}
             />
           </div>
           <div className="flex gap-3 items-center">
@@ -178,7 +182,10 @@ const Filters = ({
               checked={featuredOnly}
               onCheckedChange={() => setFeaturedOnly(!featuredOnly)}
             />
-            <Label htmlFor="terms" className="text-[#333C4C] font-medium text-[14px]">
+            <Label
+              htmlFor="terms"
+              className="text-[#333C4C] font-medium text-[14px]"
+            >
               Featured Properties Only
             </Label>
           </div>

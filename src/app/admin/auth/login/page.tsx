@@ -101,7 +101,7 @@ const Page = () => {
     <div className="flex items-center justify-center h-screen bg-gray-100">
       <div className="bg-white p-16 rounded-lg shadow-md flex flex-col items-center justify-between min-h-[631px] min-w-[640px]">
         <div>
-          <Image src={img} alt="Logo" width={35} height={35} />
+          <Image src={"/logoProperty.svg"} alt="Logo" width={220} height={39} />
         </div>
         <div className="flex flex-col items-center justify-center gap-[6px] ">
           <span className="text-[48px] text-black font-semibold text-center leading-none">
