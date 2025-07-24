@@ -5,9 +5,9 @@ const bases = {
 };
 export const apiRoutes = {
   auth: {
-    login: `/${bases.auth}/login`,
-    refreshToken: `/${bases.auth}/refresh`,
-    logout: `/${bases.auth}/logout`,
+    login: `${bases.auth}/login`,
+    refreshToken: `${bases.auth}/refresh`,
+    logout: `${bases.auth}/logout`,
   },
   user: {},
   property: {
