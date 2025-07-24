@@ -1,13 +1,13 @@
 const bases = {
   user: "users",
   auth: "auth",
-  property:"property"
+  property: "property",
 };
 export const apiRoutes = {
   auth: {
-    login: `${bases.auth}/login`,
-    refreshToken: `${bases.auth}/refresh-token`,
-    logout: `${bases.auth}/logout`,
+    login: `/${bases.auth}/login`,
+    refreshToken: `/${bases.auth}/refresh-token`,
+    logout: `/${bases.auth}/logout`,
   },
   user: {},
   property: {
