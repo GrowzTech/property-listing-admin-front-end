@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useEffect } from "react";
 import {
   Table,
@@ -77,8 +79,9 @@ const PropertyTableView = () => {
                 <Badge
                   label={property.status.toUpperCase()}
                   color={
-                    statusColorMap[property.status as keyof typeof statusColorMap] ||
-                    "bg-green-500"
+                    statusColorMap[
+                      property.status as keyof typeof statusColorMap
+                    ] || "bg-green-500"
                   }
                 />
               </TableCell>

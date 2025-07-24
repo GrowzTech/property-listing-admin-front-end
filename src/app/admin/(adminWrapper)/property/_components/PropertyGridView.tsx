@@ -1,3 +1,5 @@
+"use client";
+
 import PropertyCard from "@/components/block/PropertyCard";
 import React, { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "@/lib/hooks";
@@ -8,7 +10,6 @@ export const PropertyGridView = () => {
   const dispatch = useAppDispatch();
 
   const properties = useAppSelector((state) => state.property.property);
-
 
   const searchParams = useSearchParams();
 
