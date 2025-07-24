@@ -6,7 +6,7 @@ const bases = {
 export const apiRoutes = {
   auth: {
     login: `/${bases.auth}/login`,
-    refreshToken: `/${bases.auth}/refresh-token`,
+    refreshToken: `/${bases.auth}/refresh`,
     logout: `/${bases.auth}/logout`,
   },
   user: {},
