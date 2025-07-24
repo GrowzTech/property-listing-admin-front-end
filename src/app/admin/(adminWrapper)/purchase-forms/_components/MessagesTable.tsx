@@ -23,19 +23,27 @@ import {
 import { Modal } from "@/components/block/Modal";
 import CustomerInfo from "./CustomerInfo";
 import CustomerMessage from "./CustomerMessage";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 const totalItems = 13;
 const pageSizeOptions = [5, 10, 20];
 
 const MessagesTable = () => {
   const router = useRouter();
-  const searchParams = useSearchParams();
+  // const searchParams = useSearchParams();
 
   const [open, setOpen] = useState(false);
 
-  const currentPage = parseInt(searchParams.get("page") || "1");
-  const limit = parseInt(searchParams.get("limit") || "10");
+  // const currentPage = parseInt(searchParams.get("page") || "1");
+  const currentPage = 1;
+  // const limit = parseInt(searchParams.get("limit") || "10");
+  const limit = 10;
 
   const totalPages = Math.ceil(totalItems / limit);
 

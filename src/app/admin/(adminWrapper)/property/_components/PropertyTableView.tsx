@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React from "react";
 import {
   Table,
   TableBody,
@@ -13,23 +13,23 @@ import Image from "next/image";
 import Badge, { statusColorMap } from "@/components/block/Badge";
 import { Edit, Eye, Trash2 } from "lucide-react";
 import { useAppDispatch, useAppSelector } from "@/lib/hooks";
-import { propertyActions as actions } from "@/lib/features/property/propertySlice";
-import { useSearchParams } from "next/navigation";
+// import { propertyActions as actions } from "@/lib/features/property/propertySlice";
+// import { useSearchParams } from "next/navigation";
 
 const PropertyTableView = () => {
   const dispatch = useAppDispatch();
   const properties = useAppSelector((state) => state.property.property);
 
-  const searchParams = useSearchParams();
+  // const searchParams = useSearchParams();
 
-  useEffect(() => {
-    const query: Record<string, string> = {};
-    for (const [key, value] of searchParams.entries()) {
-      query[key] = value;
-    }
+  // useEffect(() => {
+  //   const query: Record<string, string> = {};
+  //   for (const [key, value] of searchParams.entries()) {
+  //     query[key] = value;
+  //   }
 
-    dispatch(actions.fetchproperty(query));
-  }, [searchParams]);
+  //   dispatch(actions.fetchproperty(query));
+  // }, [searchParams]);
 
   const formatFullDate = (dateString: string): string => {
     const date = new Date(dateString);

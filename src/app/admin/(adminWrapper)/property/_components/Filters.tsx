@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
 import { X } from "lucide-react";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
 const options = [
@@ -29,7 +29,6 @@ const Filters = ({
   setToggleFilters: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
   const router = useRouter();
-  const searchParams = useSearchParams();
 
   const [search, setSearch] = useState("");
   const [status, setStatus] = useState("");
